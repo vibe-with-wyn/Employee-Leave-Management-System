@@ -246,4 +246,4 @@ Based on the current implementation, the following enhancements can improve func
 - **Notifications**: Stored in `notifications` table, fetched via controllers, displayed as toasts/dropdowns with unread badges, and updated via AJAX ([ManagerDashboardController.php](#key-files-and-their-functionalities)).
 - **RBAC**: Uses `employee` and `manager` roles, enforced by [AuthMiddleware.php](#key-files-and-their-functionalities) and [Session.php](#key-files-and-their-functionalities). Managers access exclusive features; employees are restricted.
 - Database operations use phpMyAdmin, with [Auth.php](#key-files-and-their-functionalities) for authentication and [LeaveModel.php](#key-files-and-their-functionalities) for leave queries.
-- The manager account (`user@example.com`) is included in the database for testing, ensuring your instructor can log in and import employees via CSV without creating a new account.
+- The manager account (`user@example.com`) is included in the database for testing, ensuring users who test can log in and import employees via CSV without creating a new account.
