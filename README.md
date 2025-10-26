@@ -70,7 +70,7 @@ The system follows a [3-tier architecture](#key-files-and-their-functionalities)
    ```bash
    git clone https://github.com/your-group-repo/leave-management-system.git
    ```
-   - Must rename the folder (master) to employee-leave-management-system
+   - The folder must be named employee-leave-management-system
 2. **Install Dependencies**:
    - Install Apache web server and PHP 8.2.12.
    - Install MariaDB 10.4.32 (or MySQL equivalent) for the database.
