@@ -14,6 +14,7 @@ This web-based system streamlines employee leave requests, manager approvals, an
   git clone https://github.com/your-group-repo/leave-management-system.git
   ```
   Ensure the folder is named `employee-leave-management-system`.
+  
 2. Create a `leave_management` database and import the schema:
   ```
   Import leave_management.sql via phpMyAdmin
