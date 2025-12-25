@@ -5,10 +5,10 @@ class Database {
     private $connection;
 
     // Database configuration
-    private $host = 'localhost';
-    private $dbname = 'leave_management';
-    private $username = 'root'; // Default MySQL username (adjust as needed)
-    private $password = '';     // Default MySQL password (adjust as needed)
+    private $host = 'sql211.infinityfree.com';
+    private $dbname = 'if0_40752096_leave_management';
+    private $username = 'if0_40752096';
+    private $password = 'BKhAGIbyv6';
 
     /**
      * Private constructor to prevent direct instantiation (Singleton pattern)
