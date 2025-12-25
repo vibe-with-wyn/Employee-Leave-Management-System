@@ -7,7 +7,7 @@ RewriteBase /employee-leave-management-system/
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Redirect root to login
-RewriteRule ^$ frontend/public/login.php [L]
+RewriteRule ^$ frontend/public/login.php [L,R=302]
 RewriteRule ^index\.php$ frontend/public/login.php [L]
 
 # Block access to sensitive files
