@@ -5,6 +5,7 @@ This guide walks you through testing the deployed system end-to-end using real l
 ## Base URL (Deployed)
 - Domain: https://vibe-with-wyn.infinityfree.me
 - App Base: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system
+- Source Repository: https://github.com/vibe-with-wyn/employee-leave-management-system
 
 Quick links:
 - Login: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/public/login.php
@@ -17,7 +18,7 @@ Quick links:
 ## Test Account (Manager)
 Use this account to access manager features:
 - Email: user@example.com
-- Password: Test@user1
+- Password: Wendel@123
 - Role: manager
 - Department: Information Technology
 
@@ -42,7 +43,7 @@ Note: On import, passwords are also logged to server: logs/imported_default_pass
 ### 1) Manager Login and Dashboard
 Steps:
 1. Open the Login page.
-2. Log in with manager credentials (user@example.com / Test@user1).
+2. Log in with manager credentials (user@example.com / Wendel@123).
 3. You should land on the Manager Dashboard.
 
 Expected:
@@ -168,7 +169,7 @@ Expected:
 ---
 
 ## Test Data Summary
-- Manager account: user@example.com / Test@user1
+- Manager account: user@example.com / Wendel@123
 - Mock CSV: frontend/assets/imports/employees.csv
 - CSV headers: FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, MANAGER_ID, DEPARTMENT_ID, ROLE
 - Default employee password format: f + lll + DD + "!" (lowercase)

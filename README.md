@@ -2,6 +2,11 @@
 
 This web-based system streamlines employee leave requests, manager approvals, and reporting with CSV-based data integration and a 3-tier architecture (frontend, logic, database).
 
+## Project Links
+- Live App Base: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system
+- GitHub Repository: https://github.com/vibe-with-wyn/employee-leave-management-system
+- HTTPS Clone: https://github.com/vibe-with-wyn/employee-leave-management-system.git
+
 ## Requirements
 - PHP 8.2.12
 - MariaDB 10.4.32 (or MySQL equivalent)
@@ -11,18 +16,24 @@ This web-based system streamlines employee leave requests, manager approvals, an
 ## Quick Start
 1. Clone the repository:
   ```bash
-  git clone https://github.com/your-group-repo/leave-management-system.git
+  git clone https://github.com/vibe-with-wyn/employee-leave-management-system.git
   ```
-  Ensure the folder is named `employee-leave-management-system`.
+  The folder will be named `employee-leave-management-system`.
   
 2. Create a `leave_management` database and import the schema:
   ```
   Import leave_management.sql via phpMyAdmin
   ```
-3. Deploy to Apache and open:
+
+3. Open the deployed app (recommended):
+  ```
+  https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/public/login.php
+  ```
+  Or for local development:
   ```
   http://localhost/employee-leave-management-system/frontend/public/login.php
   ```
+
 4. Log in with the provided manager account to explore features.
 
 ## Documentation
