@@ -27,7 +27,13 @@ class AuthMiddleware {
                 }
                 return true;
             } else {
-                setcookie('remember_token', '', time() - 3600, '/', '', true, true);
+                setcookie('remember_token', '', [
+                    'expires' => time() - 3600,
+                    'path' => '/',
+                    'secure' => true,
+                    'httponly' => true,
+                    'samesite' => 'Strict'
+                ]);
             }
         }
 
