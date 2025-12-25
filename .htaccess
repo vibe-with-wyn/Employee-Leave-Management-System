@@ -1,0 +1,32 @@
+# Enable URL rewriting
+RewriteEngine On
+RewriteBase /employee-leave-management-system/
+
+# Force HTTPS (uncomment for production)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect root to login
+RewriteRule ^$ frontend/public/login.php [L]
+RewriteRule ^index\.php$ frontend/public/login.php [L]
+
+# Block access to sensitive files
+<FilesMatch "\.(log|sql|md|gitignore|env)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block directory listing
+Options -Indexes
+
+# Error pages
+ErrorDocument 404 /employee-leave-management-system/access/404.php
+ErrorDocument 401 /employee-leave-management-system/access/401.php
+
+# PHP settings
+php_value upload_max_filesize 5M
+php_value post_max_size 6M
+php_value max_execution_time 300
+php_value max_input_time 300
+php_flag display_errors Off
+php_flag log_errors On
