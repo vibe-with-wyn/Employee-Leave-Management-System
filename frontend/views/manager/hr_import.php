@@ -197,16 +197,162 @@ Session::set('import_results', null);
             overflow: visible !important;
         }
 
+        /* Credentials Modal Styles */
+        .credentials-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .credentials-modal.active {
+            display: flex;
+        }
+
+        .credentials-modal-content {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .credentials-modal-header {
+            padding: 20px;
+            border-bottom: 2px solid #e5e7eb;
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+        }
+
+        .credentials-modal-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .credentials-modal-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .credentials-modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .credentials-warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #856404;
+        }
+
+        .credentials-warning strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .credentials-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .credentials-table th,
+        .credentials-table td {
+            border: 1px solid #e5e7eb;
+            padding: 10px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .credentials-table th {
+            background: #f9fafb;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .credentials-table td {
+            color: #374151;
+        }
+
+        .credentials-table .password-cell {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #4a90e2;
+        }
+
+        .credentials-modal-footer {
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .credentials-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .credentials-btn-primary {
+            background: #4a90e2;
+            color: white;
+        }
+
+        .credentials-btn-primary:hover {
+            background: #357abd;
+        }
+
+        .credentials-btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+
+        .credentials-btn-secondary:hover {
+            background: #4b5563;
+        }
+
         @media (max-width: 768px) {
-            .tooltip-text {
-                width: 180px;
-                font-size: 0.75rem;
-                top: -140%;
+            .credentials-modal-content {
+                width: 95%;
+                max-height: 90vh;
             }
 
-            .tooltip-text.bottom {
-                top: auto;
-                bottom: 150%;
+            .credentials-table {
+                font-size: 0.8rem;
+            }
+
+            .credentials-table th,
+            .credentials-table td {
+                padding: 8px;
+            }
+
+            .credentials-modal-footer {
+                flex-direction: column;
+            }
+
+            .credentials-btn {
+                width: 100%;
             }
         }
     </style>
@@ -378,6 +524,55 @@ Session::set('import_results', null);
         </main>
     </div>
 
+    <!-- Credentials Modal -->
+    <div id="credentials-modal" class="credentials-modal">
+        <div class="credentials-modal-content">
+            <div class="credentials-modal-header">
+                <h2>🔐 Import Successful - Employee Credentials</h2>
+                <p>Testing credentials for <?php echo $importResults['success_count'] ?? 0; ?> newly imported employees</p>
+            </div>
+            <div class="credentials-modal-body">
+                <div class="credentials-warning">
+                    <strong>⚠️ Testing Purpose Only</strong>
+                    In production, these credentials should be sent via email to each employee. This modal is for testing/demonstration purposes only.
+                </div>
+                
+                <?php if (!empty($importResults['credentials'])): ?>
+                    <table class="credentials-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($importResults['credentials'] as $cred): ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($cred['employee_id']); ?></td>
+                                    <td><?php echo htmlspecialchars($cred['name']); ?></td>
+                                    <td><?php echo htmlspecialchars($cred['email']); ?></td>
+                                    <td class="password-cell"><?php echo htmlspecialchars($cred['password']); ?></td>
+                                    <td><?php echo htmlspecialchars($cred['role']); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
+            </div>
+            <div class="credentials-modal-footer">
+                <button class="credentials-btn credentials-btn-primary" onclick="downloadCredentials()">
+                    <i class="fas fa-download"></i> Download as Text File
+                </button>
+                <button class="credentials-btn credentials-btn-secondary" onclick="closeCredentialsModal()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="../../assets/js/manager_dashboard.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -431,6 +626,78 @@ Session::set('import_results', null);
                     tooltip.classList.remove('bottom');
                     tooltip.style.top = '-120%';
                 });
+            }
+        });
+
+        // Credentials Modal Functions
+        function showCredentialsModal() {
+            const modal = document.getElementById('credentials-modal');
+            if (modal) {
+                modal.classList.add('active');
+            }
+        }
+
+        function closeCredentialsModal() {
+            const modal = document.getElementById('credentials-modal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        function downloadCredentials() {
+            const credentials = <?php echo json_encode($importResults['credentials'] ?? []); ?>;
+            if (credentials.length === 0) {
+                showToast('No credentials to download.', 'error', 5000);
+                return;
+            }
+
+            let content = '='.repeat(80) + '\n';
+            content += 'EMPLOYEE CREDENTIALS - FOR TESTING PURPOSES ONLY\n';
+            content += '='.repeat(80) + '\n\n';
+            content += 'IMPORTANT: In production, these credentials should be sent via email.\n';
+            content += 'This file is generated for testing/demonstration purposes.\n\n';
+            content += 'Generated on: ' + new Date().toLocaleString() + '\n';
+            content += 'Total Employees: ' + credentials.length + '\n\n';
+            content += '='.repeat(80) + '\n\n';
+
+            credentials.forEach((cred, index) => {
+                content += `Employee #${index + 1}\n`;
+                content += '-'.repeat(80) + '\n';
+                content += `ID:       ${cred.employee_id}\n`;
+                content += `Name:     ${cred.name}\n`;
+                content += `Email:    ${cred.email}\n`;
+                content += `Password: ${cred.password}\n`;
+                content += `Role:     ${cred.role}\n\n`;
+            });
+
+            content += '='.repeat(80) + '\n';
+            content += 'END OF CREDENTIALS\n';
+            content += '='.repeat(80) + '\n';
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'employee_credentials_' + new Date().getTime() + '.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+
+            showToast('Credentials downloaded successfully!', 'success', 5000);
+        }
+
+        // Show modal if credentials exist
+        <?php if (!empty($importResults['credentials'])): ?>
+            document.addEventListener('DOMContentLoaded', function() {
+                showCredentialsModal();
+            });
+        <?php endif; ?>
+
+        // Close modal on outside click
+        document.getElementById('credentials-modal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCredentialsModal();
             }
         });
     </script>
