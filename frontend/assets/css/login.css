@@ -225,8 +225,6 @@ body {
 .input-group input:focus,
 .input-group input.filled {
     border-color: rgb(46, 115, 194);
-    padding-top: 18px; /* Add top padding when filled to accommodate label */
-    padding-bottom: 6px;
 }
 
 .input-group label {
@@ -238,14 +236,11 @@ body {
     pointer-events: none;
     transition: all 0.2s ease;
     z-index: 1;
-    background: white;
-    padding: 0 5px;
 }
 
 .input-group input:focus + label,
 .input-group input.filled + label {
     top: -10px;
-    left: 10px;
     font-size: 12px;
     color: rgb(46, 115, 194);
     background: white;
@@ -631,16 +626,9 @@ button:disabled {
         padding: 10px 35px 10px 12px; /* Adjusted padding for mobile */
         font-size: 14px;
     }
-    .input-group input:focus,
-    .input-group input.filled {
-        padding-top: 16px;
-        padding-bottom: 4px;
-    }
-
     .input-group label {
         font-size: 12px;
     }
-
     .input-group input:focus + label,
     .input-group input.filled + label {
         top: -8px;
