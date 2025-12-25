@@ -13,8 +13,15 @@ class LogoutController {
     }
 
     public function handleLogout() {
+        // Set headers to prevent caching
+        header('Cache-Control: no-cache, no-store, must-revalidate');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+        
         $this->auth->logout();
-        redirect($this->baseUrl . '/', 'You have been logged out.', 'success');
+        
+        // Redirect with clear parameter to ensure clean state
+        redirect($this->baseUrl . '/frontend/public/login.php?clear=1', 'You have been logged out.', 'success');
     }
 }
 
