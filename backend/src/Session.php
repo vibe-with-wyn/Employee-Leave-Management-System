@@ -73,10 +73,29 @@ class Session {
      */
     public static function destroy() {
         self::start();
-        session_unset();
-        session_destroy();
-        // Clear the session array to prevent reuse
+        
+        // Unset all session variables
         $_SESSION = [];
+        
+        // Delete the session cookie
+        if (isset($_COOKIE[session_name()])) {
+            $params = session_get_cookie_params();
+            setcookie(
+                session_name(),
+                '',
+                [
+                    'expires' => time() - 3600,
+                    'path' => $params['path'],
+                    'domain' => $params['domain'],
+                    'secure' => $params['secure'],
+                    'httponly' => $params['httponly'],
+                    'samesite' => $params['samesite']
+                ]
+            );
+        }
+        
+        // Destroy the session
+        session_destroy();
     }
 
     /**
@@ -104,7 +123,7 @@ class Session {
      */
     public static function requireLogin($redirectUrl = null) {
         if (!self::isLoggedIn()) {
-            $url = $redirectUrl ?? self::$baseUrl . '/frontend/views/login.php';
+            $url = $redirectUrl ?? self::$baseUrl . '/frontend/public/login.php';
             self::set('message', 'Please log in to access this page.');
             self::set('message_type', 'error');
             header("Location: $url");
