@@ -99,7 +99,7 @@ class HRImportController {
 
     public function importCSV() {
         $managerId = Session::get('user_id');
-        $results = ['success_count' => 0, 'skipped_count' => 0, 'errors' => [], 'success_rows' => []];
+        $results = ['success_count' => 0, 'skipped_count' => 0, 'errors' => [], 'success_rows' => [], 'credentials' => []];
         $logDir = __DIR__ . '/../../../employee-leave-management-system/logs/';
         $logFile = $logDir . 'imported_default_password.log';
         $existingEmails = [];
@@ -227,6 +227,16 @@ class HRImportController {
                     'last_name' => $data['LAST_NAME'],
                     'email' => $data['EMAIL']
                 ];
+                
+                // Store credentials for modal display (testing purposes only)
+                $results['credentials'][] = [
+                    'employee_id' => $newEmployeeId,
+                    'name' => $data['FIRST_NAME'] . ' ' . $data['LAST_NAME'],
+                    'email' => $data['EMAIL'],
+                    'password' => $plainPassword,
+                    'role' => ucfirst($data['ROLE'])
+                ];
+                
                 $results['success_count']++;
                 $this->logAudit($managerId, 'hr_import', "Imported employee ID: $newEmployeeId, Email: {$data['EMAIL']}");
             }
