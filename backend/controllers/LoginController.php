@@ -83,13 +83,19 @@ class LoginController {
         if ($loginAttempts >= $this->maxLoginAttempts && (time() - $lastAttemptTime) < $this->lockoutDuration) {
             $remainingTime = $this->lockoutDuration - (time() - $lastAttemptTime);
             $errorMessage = "Too many login attempts. Try again in " . ceil($remainingTime / 60) . " minutes.";
-            redirect($this->baseUrl . '/frontend/public/login.php', $errorMessage, 'error');
+            Session::set('message', $errorMessage);
+            Session::set('message_type', 'error');
+            header("Location: {$this->baseUrl}/frontend/public/login.php");
+            exit;
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sessionCsrfToken = Session::get('csrf_token');
             if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $sessionCsrfToken) {
-                redirect($this->baseUrl . '/frontend/public/login.php', 'Invalid CSRF token.', 'error');
+                Session::set('message', 'Invalid CSRF token.');
+                Session::set('message_type', 'error');
+                header("Location: {$this->baseUrl}/frontend/public/login.php");
+                exit;
             }
 
             if (isset($_POST['change_password'])) {
@@ -98,7 +104,10 @@ class LoginController {
 
                 if (empty($newPassword) || strlen($newPassword) < 8 || !preg_match('/[A-Z]/', $newPassword) || 
                     !preg_match('/[0-9]/', $newPassword) || !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $newPassword)) {
-                    redirect($this->baseUrl . '/frontend/public/login.php', 'Password must be at least 8 characters, include 1 uppercase letter, 1 number, and 1 special character.', 'error');
+                    Session::set('message', 'Password must be at least 8 characters, include 1 uppercase letter, 1 number, and 1 special character.');
+                    Session::set('message_type', 'error');
+                    header("Location: {$this->baseUrl}/frontend/public/login.php");
+                    exit;
                 }
 
                 $userId = Session::get('user_id');
@@ -106,7 +115,10 @@ class LoginController {
                 $currentPasswordHash = $this->auth->getCurrentPasswordHash($email);
 
                 if ($currentPasswordHash && password_verify($newPassword, $currentPasswordHash)) {
-                    redirect($this->baseUrl . '/frontend/public/login.php', 'Please enter a different password. You’re currently using this one.', 'error');
+                    Session::set('message', 'Please enter a different password. You\'re currently using this one.');
+                    Session::set('message_type', 'error');
+                    header("Location: {$this->baseUrl}/frontend/public/login.php");
+                    exit;
                 }
 
                 if ($newPassword === $confirmPassword && $newPassword !== '') {
@@ -117,10 +129,16 @@ class LoginController {
                             : $this->baseUrl . '/frontend/views/manager/manager_dashboard.php';
                         redirect($redirectUrl, 'Password updated successfully!', 'success');
                     } else {
-                        redirect($this->baseUrl . '/frontend/public/login.php', 'Failed to update password. Please try again.', 'error');
+                        Session::set('message', 'Failed to update password. Please try again.');
+                        Session::set('message_type', 'error');
+                        header("Location: {$this->baseUrl}/frontend/public/login.php");
+                        exit;
                     }
                 } else {
-                    redirect($this->baseUrl . '/frontend/public/login.php', 'Passwords do not match.', 'error');
+                    Session::set('message', 'Passwords do not match.');
+                    Session::set('message_type', 'error');
+                    header("Location: {$this->baseUrl}/frontend/public/login.php");
+                    exit;
                 }
             } else {
                 $email = trim($_POST['email'] ?? '');
@@ -138,7 +156,10 @@ class LoginController {
                         $this->logAudit($user['employee_id'], 'login_failed', 'Account is inactive');
                         // Clear the session since login should not proceed
                         $this->auth->logout();
-                        redirect($this->baseUrl . '/frontend/public/login.php', 'Your account is inactive. Please contact HR.', 'error');
+                        Session::set('message', 'Your account is inactive. Please contact HR.');
+                        Session::set('message_type', 'error');
+                        header("Location: {$this->baseUrl}/frontend/public/login.php");
+                        exit;
                     }
 
                     // If status is active, proceed with login
@@ -154,7 +175,13 @@ class LoginController {
 
                     if (isset($_POST['remember_me'])) {
                         $token = $this->auth->generateRememberToken($userId);
-                        setcookie('remember_token', $token, time() + (30 * 24 * 60 * 60), '/', '', true, true);
+                        setcookie('remember_token', $token, [
+                            'expires' => time() + (30 * 24 * 60 * 60),
+                            'path' => '/',
+                            'secure' => true,
+                            'httponly' => true,
+                            'samesite' => 'Strict'
+                        ]);
                     }
 
                     if ($firstLogin) {
@@ -180,7 +207,10 @@ class LoginController {
                         $this->logAudit($user['employee_id'], 'login_failed', 'Invalid password');
                     }
 
-                    redirect($this->baseUrl . '/frontend/public/login.php', $errorMessage, 'error');
+                    Session::set('message', $errorMessage);
+                    Session::set('message_type', 'error');
+                    header("Location: {$this->baseUrl}/frontend/public/login.php");
+                    exit;
                 }
             }
 
