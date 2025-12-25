@@ -104,9 +104,44 @@ class Auth {
         if ($userId) {
             $this->deleteRememberTokens($userId);
         }
+        
+        // Destroy session first
         Session::destroy();
+        
+        // Clear all session-related cookies
+        if (isset($_COOKIE['PHPSESSID'])) {
+            setcookie('PHPSESSID', '', [
+                'expires' => time() - 3600,
+                'path' => '/',
+                'domain' => $_SERVER['HTTP_HOST'] ?? '',
+                'secure' => true,
+                'httponly' => true,
+                'samesite' => 'Strict'
+            ]);
+            unset($_COOKIE['PHPSESSID']);
+        }
+        
+        // Clear remember_token cookie
         if (isset($_COOKIE['remember_token'])) {
-            setcookie('remember_token', '', time() - 3600, '/', '', true, true);
+            setcookie('remember_token', '', [
+                'expires' => time() - 3600,
+                'path' => '/',
+                'domain' => $_SERVER['HTTP_HOST'] ?? '',
+                'secure' => true,
+                'httponly' => true,
+                'samesite' => 'Strict'
+            ]);
+            unset($_COOKIE['remember_token']);
+        }
+        
+        // Clear any test cookies
+        if (isset($_COOKIE['__test'])) {
+            setcookie('__test', '', [
+                'expires' => time() - 3600,
+                'path' => '/',
+                'domain' => $_SERVER['HTTP_HOST'] ?? ''
+            ]);
+            unset($_COOKIE['__test']);
         }
     }
 
