@@ -3,9 +3,9 @@
 This guide explains how to use the deployed system by role (Employee vs Manager) and points to the exact live pages.
 
 ## Live URLs (Deployed)
-- App Base: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system
-- Login: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/public/login.php
-- Logout: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/backend/controllers/LogoutController.php?action=logout
+- App Base: https://absynq.is-great.net/employee-leave-management-system
+- Login: https://absynq.is-great.net/employee-leave-management-system/frontend/public/login.php
+- Logout: https://absynq.is-great.net/employee-leave-management-system/backend/controllers/LogoutController.php?action=logout
 
 ---
 
@@ -25,7 +25,7 @@ Password rules enforced by the UI:
 ## Employee Flow
 
 ### Employee Dashboard
-- https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/views/employee_dashboard.php
+- https://absynq.is-great.net/employee-leave-management-system/frontend/views/employee_dashboard.php
 
 What you can do:
 - Navigate to Leave Submission and Leave History
@@ -33,7 +33,7 @@ What you can do:
 - View remaining leave days (based on leave balances)
 
 ### Submit a Leave Request
-- https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/views/leave_submission.php
+- https://absynq.is-great.net/employee-leave-management-system/frontend/views/leave_submission.php
 
 Steps:
 1. Select a leave type.
@@ -45,7 +45,7 @@ Expected results:
 - If valid and eligible, request is created as **pending** (awaiting manager action).
 
 ### Leave History (Employee)
-- https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/views/leave_history.php
+- https://absynq.is-great.net/employee-leave-management-system/frontend/views/leave_history.php
 
 Supports:
 - Filtering (status/date/leave type)
@@ -60,14 +60,14 @@ Supports:
 ## Manager Flow
 
 ### Manager Dashboard
-- https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/views/manager/manager_dashboard.php
+- https://absynq.is-great.net/employee-leave-management-system/frontend/views/manager/manager_dashboard.php
 
 Includes:
 - Summary counts (pending/approved/rejected)
 - Charts for leave type distribution and trends
 
 ### Manage Requests (Approve/Reject)
-- https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/views/manager/manage_requests.php
+- https://absynq.is-great.net/employee-leave-management-system/frontend/views/manager/manage_requests.php
 
 Steps:
 1. Open Manage Requests.
@@ -76,14 +76,14 @@ Steps:
 4. Submit action.
 
 ### Manager Leave History
-- https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/views/manager/leave_history.php
+- https://absynq.is-great.net/employee-leave-management-system/frontend/views/manager/leave_history.php
 
 Shows:
 - Approved and rejected requests
 - Filter by employee name, leave type, status, date range
 
 ### Reporting Module + PDF
-- https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/views/manager/reporting.php
+- https://absynq.is-great.net/employee-leave-management-system/frontend/views/manager/reporting.php
 
 Steps:
 1. Select a year.
@@ -91,7 +91,7 @@ Steps:
 3. Use “Download PDF” to export.
 
 ### HR Import (CSV Upload)
-- https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/views/manager/hr_import.php
+- https://absynq.is-great.net/employee-leave-management-system/frontend/views/manager/hr_import.php
 
 CSV rules:
 - Headers must match:
@@ -100,7 +100,7 @@ CSV rules:
 Mock CSV:
 - Repo path: `frontend/assets/imports/employees.csv`
 - Direct URL:
-  https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/assets/imports/employees.csv
+  https://absynq.is-great.net/employee-leave-management-system/frontend/assets/imports/employees.csv
 
 Imported employee default password algorithm:
 - first letter of first name + first 3 letters of last name + day-of-hire + `!` (lowercase)
