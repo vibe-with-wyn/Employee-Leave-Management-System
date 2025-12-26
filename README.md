@@ -15,9 +15,8 @@ This project is live and publicly accessible at:
 ## Quick Start
 1. Clone the repository:
   ```bash
-  git clone https://github.com/vibe-with-wyn/employee-leave-management-system.git
+  https://github.com/vibe-with-wyn/absynq-elms.git
   ```
-  The folder will be named `employee-leave-management-system`.
   
 2. Create a `leave_management` database and import the schema:
   ```
