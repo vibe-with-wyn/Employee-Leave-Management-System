@@ -5,8 +5,8 @@ This project can be used in two ways:
 2) **Local development** using Apache + PHP + MariaDB/MySQL.
 
 ## Option A — Use the Deployed App
-- App Base: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system
-- Login: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/public/login.php
+- App Base: https://absynq.is-great.net/
+- Login: https://absynq.is-great.net/employee-leave-management-system/frontend/public/login.php
 
 Use the Testing Guide for accounts, CSV import, and end-to-end scenarios:
 - `docs/testing.md`
@@ -22,8 +22,9 @@ Use the Testing Guide for accounts, CSV import, and end-to-end scenarios:
 ### Steps
 1. Clone:
    ```bash
-   git clone https://github.com/vibe-with-wyn/employee-leave-management-system.git
+   git clone https://github.com/vibe-with-wyn/absynq-elms.git
    ```
+   The folder will be named employee-leave-management-system.
 
 2. Put the folder under your web root so the URL becomes:
    - `http://localhost/employee-leave-management-system/`
