@@ -3,17 +3,17 @@
 This guide walks you through testing the deployed system end-to-end using real links, a manager test account, and mock employee data for HR import.
 
 ## Base URL (Deployed)
-- Domain: https://vibe-with-wyn.infinityfree.me
-- App Base: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system
-- Source Repository: https://github.com/vibe-with-wyn/employee-leave-management-system
+- Domain: https://absynq.is-great.net/
+- App Base: https://absynq.is-great.net/employee-leave-management-system/
+- Source Repository: https://github.com/vibe-with-wyn/absynq-elms
 
 Quick links:
-- Login: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/public/login.php
-- Employee Dashboard: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/views/employee_dashboard.php
-- Manager Dashboard: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/views/manager/manager_dashboard.php
-- Manager Reporting: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/views/manager/reporting.php
-- Manager HR Import: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/views/manager/hr_import.php
-- Logout: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/backend/controllers/LogoutController.php?action=logout
+- Login: https://absynq.is-great.net/employee-leave-management-system/frontend/public/login.php
+- Employee Dashboard: https://absynq.is-great.net/employee-leave-management-system/frontend/views/employee_dashboard.php
+- Manager Dashboard: https://absynq.is-great.net/employee-leave-management-system/frontend/views/manager/manager_dashboard.php
+- Manager Reporting: https://absynq.is-great.net/employee-leave-management-system/frontend/views/manager/reporting.php
+- Manager HR Import: https://absynq.is-great.net/employee-leave-management-system/frontend/views/manager/hr_import.php
+- Logout: https://absynq.is-great.net/employee-leave-management-system/backend/controllers/LogoutController.php?action=logout
 
 ## Test Account (Manager)
 Use this account to access manager features:
@@ -26,7 +26,7 @@ Use this account to access manager features:
 Use this file to test HR import:
 - Repository path: frontend/assets/imports/employees.csv
 - Direct URL (download and import in the HR Import page):
-  https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/assets/imports/employees.csv
+  https://absynq.is-great.net/employee-leave-management-system/frontend/assets/imports/employees.csv
 
 Default password for imported employees (algorithm):
 - Format: first letter of first name + first 3 letters of last name + day-of-hire + "!"
@@ -109,7 +109,7 @@ Expected:
 
 ### 5) Leave Submission (Form)
 Steps:
-1. Navigate to Leave Submission: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/views/leave_submission.php
+1. Navigate to Leave Submission: https://absynq.is-great.net/employee-leave-management-system/frontend/views/leave_submission.php
 2. Fill out the form:
    - Leave type: choose from available list (e.g., "Sick Leave", "Vacation Leave")
    - Start/End dates: future dates, end after start
@@ -129,7 +129,7 @@ Troubleshooting:
 
 ### 6) Manager — Reporting Module and PDF Download
 Steps:
-1. Open Reporting: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/views/manager/reporting.php
+1. Open Reporting: https://absynq.is-great.net/employee-leave-management-system/frontend/views/manager/reporting.php
 2. Pick a year in the dropdown.
 3. Click “Download PDF.”
 
@@ -161,7 +161,7 @@ Tip: Use browser DevTools or a tool like Postman for API calls.
 ### 8) Logout
 Steps:
 1. Use Logout link in profile dropdown, or:
-2. Visit: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/backend/controllers/LogoutController.php?action=logout
+2. Visit: https://absynq.is-great.net/employee-leave-management-system/backend/controllers/LogoutController.php?action=logout
 
 Expected:
 - Redirected to base with “You have been logged out.” toast.
