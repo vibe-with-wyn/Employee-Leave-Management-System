@@ -1,4 +1,4 @@
-# Employee Leave Management System with Data Reporting and Integration
+# Absynq — Employee Leave Management System with Data Reporting and Integration 💼
 
 This web-based system streamlines employee leave requests, manager approvals, and reporting with CSV-based data integration and a 3-tier architecture (frontend, logic, database).
 
