@@ -3,10 +3,10 @@
 A web-based leave request system that supports employee leave submissions, manager approvals, HR CSV-based employee import, and basic reporting with PDF export. The project follows a simple 3-tier structure (frontend UI, backend PHP logic, MariaDB database).
 
 ## Live Deployment
-- Domain: https://vibe-with-wyn.infinityfree.me
-- App Base (subfolder): https://vibe-with-wyn.infinityfree.me/employee-leave-management-system
-- Login page: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/public/login.php
-- Source repository: https://github.com/vibe-with-wyn/employee-leave-management-system
+- Domain: https://absynq.is-great.net/
+- App Base (subfolder): https://absynq.is-great.net/employee-leave-management-system
+- Login page: https://absynq.is-great.net/employee-leave-management-system/frontend/public/login.php
+- Source repository: https://github.com/vibe-with-wyn/absynq-elms
 
 ## Roles
 ### Employee
