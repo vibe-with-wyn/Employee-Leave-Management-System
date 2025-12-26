@@ -2,10 +2,9 @@
 
 This web-based system streamlines employee leave requests, manager approvals, and reporting with CSV-based data integration and a 3-tier architecture (frontend, logic, database).
 
-## Project Links
-- Live App Base: https://vibe-with-wyn.infinityfree.me/employee-leave-management-system
-- GitHub Repository: https://github.com/vibe-with-wyn/employee-leave-management-system
-- HTTPS Clone: https://github.com/vibe-with-wyn/employee-leave-management-system.git
+## 🌐 Deployed Application
+This project is live and publicly accessible at:  
+👉 https://absynq.is-great.net/
 
 ## Requirements
 - PHP 8.2.12
@@ -27,7 +26,7 @@ This web-based system streamlines employee leave requests, manager approvals, an
 
 3. Open the deployed app (recommended):
   ```
-  https://vibe-with-wyn.infinityfree.me/employee-leave-management-system/frontend/public/login.php
+  https://absynq.is-great.net/employee-leave-management-system/frontend/public/login.php
   ```
   Or for local development:
   ```
